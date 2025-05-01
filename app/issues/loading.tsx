@@ -1,37 +1,44 @@
-import { Link, Table } from '@radix-ui/themes'
-import React from 'react'
-import IssueStatusBadge from '../components/IssueStatusBadge'
-import {Skeleton } from '../components/index';
+import { Link, Table } from "@radix-ui/themes";
+import React from "react";
+// import IssueStatusBadge from '../components/IssueStatusBadge'
+import { Skeleton } from "../components/index";
 const LoadingIssuesPage = () => {
-
-    const issues = [1,2,3,4,5]
+  const issues = [1, 2, 3, 4, 5];
   return (
     <Table.Root variant="surface">
-        <Table.Header>
-          <Table.Row>
-            <Table.ColumnHeaderCell>Issue</Table.ColumnHeaderCell>
-            <Table.ColumnHeaderCell className='hidden md:table-cell'>Status</Table.ColumnHeaderCell>
-            <Table.ColumnHeaderCell className='hidden md:table-cell'>Created At</Table.ColumnHeaderCell>
+      <Table.Header>
+        <Table.Row>
+          <Table.ColumnHeaderCell>Issue</Table.ColumnHeaderCell>
+          <Table.ColumnHeaderCell className="hidden md:table-cell">
+            Status
+          </Table.ColumnHeaderCell>
+          <Table.ColumnHeaderCell className="hidden md:table-cell">
+            Created At
+          </Table.ColumnHeaderCell>
+        </Table.Row>
+      </Table.Header>
+      <Table.Body>
+        {issues.map((issue) => (
+          <Table.Row key={issue}>
+            <Table.Cell>
+              <Link href={`/issues/${issue}`}>
+                <Skeleton />
+              </Link>
+              <div className="block md:hidden">
+                <Skeleton />
+              </div>
+            </Table.Cell>
+            <Table.Cell className="hidden md:table-cell">
+              <Skeleton />
+            </Table.Cell>
+            <Table.Cell className="hidden md:table-cell">
+              <Skeleton />
+            </Table.Cell>
           </Table.Row>
-        </Table.Header>
-        <Table.Body>
-          {issues.map(issue => (
-            <Table.Row key={issue}>
-              <Table.Cell>
-                <Link href={`/issues/${issue}`}>
-                <Skeleton/></Link>
-                <div className='block md:hidden'>
-                <Skeleton/>
-                </div>
-              </Table.Cell>
-              <Table.Cell className='hidden md:table-cell'><Skeleton/></Table.Cell>
-              <Table.Cell className='hidden md:table-cell'><Skeleton/></Table.Cell>
-            </Table.Row>
-          ))}
-        </Table.Body>
+        ))}
+      </Table.Body>
+    </Table.Root>
+  );
+};
 
-      </Table.Root>
-  )
-}
-
-export default LoadingIssuesPage
+export default LoadingIssuesPage;
